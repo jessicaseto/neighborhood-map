@@ -1,7 +1,13 @@
 import React, { Component } from 'react';
-import {Map, Marker, GoogleApiWrapper} from 'google-maps-react';
+import {Map, Marker, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
 
 export class MapContainer extends Component {
+  // state
+  state = {
+    activeMarker: {},
+    showingInfoWindow: false
+  };
+
   // Markers array for marker objects
   markers = [
     {
@@ -51,6 +57,15 @@ export class MapContainer extends Component {
     }
   ];
 
+  showInfoWindow = (props, marker, e) => {
+    console.log('props', props);
+    console.log('marker', marker);
+    this.setState({
+      activeMarker: marker,
+      showingInfoWindow: true
+    });
+  }
+
   render() {
     return (
       <Map
@@ -61,9 +76,17 @@ export class MapContainer extends Component {
         {this.markers.map((marker) =>
           <Marker
             key={marker.name}
+            name={marker.title}
             position={marker.position}
+            onClick={this.showInfoWindow}
           />
         )}
+        <InfoWindow
+          marker={this.state.activeMarker}
+          visible={this.state.showingInfoWindow}
+        >
+          <div><h1>{this.state.activeMarker.name}</h1></div>
+        </InfoWindow>
       </Map>
     );
   }
