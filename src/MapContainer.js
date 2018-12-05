@@ -8,6 +8,15 @@ export class MapContainer extends Component {
     showingInfoWindow: false
   };
 
+  // styles
+  mapStyles = {
+    display: 'block',
+    width: '80%',
+    height: '100%',
+    position: 'relative',
+    order: 2
+  };
+
   // Markers array for marker objects
   markers = [
     {
@@ -79,9 +88,14 @@ export class MapContainer extends Component {
     return (
       <Map
         google={this.props.google}
-        initialCenter={{lat: 47.6131742, lng: -122.482491}}
+        initialCenter={{lat: 47.615022, lng: -122.148878}}
         zoom={8}
         onClick={this.handleMapClick}
+        style={{
+          width: '80%',
+          position: 'absolute',
+          left: '20%'
+        }}
       >
         {this.markers.map((marker) =>
           <Marker
