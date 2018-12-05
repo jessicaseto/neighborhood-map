@@ -57,9 +57,18 @@ export class MapContainer extends Component {
     }
   ];
 
-  showInfoWindow = (props, marker, e) => {
-    console.log('props', props);
-    console.log('marker', marker);
+  handleMapClick = (props) => {
+    // Hide infowindow if one is showing already
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        activeMarker: {},
+        showingInfoWindow: false
+      })
+    }
+  }
+
+  handleMarkerClick = (props, marker, e) => {
+    // Show infowindow on marker click
     this.setState({
       activeMarker: marker,
       showingInfoWindow: true
@@ -72,13 +81,14 @@ export class MapContainer extends Component {
         google={this.props.google}
         initialCenter={{lat: 47.6131742, lng: -122.482491}}
         zoom={8}
+        onClick={this.handleMapClick}
       >
         {this.markers.map((marker) =>
           <Marker
             key={marker.name}
             name={marker.title}
             position={marker.position}
-            onClick={this.showInfoWindow}
+            onClick={this.handleMarkerClick}
           />
         )}
         <InfoWindow
