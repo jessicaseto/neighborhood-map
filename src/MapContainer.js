@@ -5,16 +5,12 @@ export class MapContainer extends Component {
   // state
   state = {
     activeMarker: {},
-    showingInfoWindow: false
-  };
-
-  // styles
-  mapStyles = {
-    display: 'block',
-    width: '80%',
-    height: '100%',
-    position: 'relative',
-    order: 2
+    showingInfoWindow: false,
+    mapStyles: {
+      width: '75%',
+      position: 'absolute',
+      left: '25%'
+    }
   };
 
   // Markers array for marker objects
@@ -91,11 +87,7 @@ export class MapContainer extends Component {
         initialCenter={{lat: 47.615022, lng: -122.148878}}
         zoom={8}
         onClick={this.handleMapClick}
-        style={{
-          width: '80%',
-          position: 'absolute',
-          left: '20%'
-        }}
+        style={this.state.mapStyles}
       >
         {this.markers.map((marker) =>
           <Marker
