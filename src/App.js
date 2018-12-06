@@ -7,6 +7,7 @@ import './App.css';
 export class App extends Component {
   // State
   state = {
+    screenSize: 'mobile',
     sidebarVisible: false,
     mapStylesMobile: {
       width: '100%',
@@ -52,11 +53,15 @@ export class App extends Component {
           <MapContainer
             mapStyles={this.state.mapStylesMobile}
             closeNav={this.closeNav}
+            screen={this.state.screenSize}
           />
         </MediaQuery>
         <MediaQuery query="(min-width: 600px)">
           <Sidebar/>
-          <MapContainer mapStyles={this.state.mapStylesDesktop}/>
+          <MapContainer
+            mapStyles={this.state.mapStylesDesktop}
+            closeNav={this.closeNav}
+          />
         </MediaQuery>
       </div>
     );
