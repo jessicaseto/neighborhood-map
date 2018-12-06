@@ -32,6 +32,12 @@ export class App extends Component {
     });
   };
 
+  closeNav = () => {
+    this.setState({
+      sidebarVisible: false
+    });
+  };
+
   render() {
     return (
       <div style={this.containerStyles}>
@@ -43,7 +49,10 @@ export class App extends Component {
           {this.state.sidebarVisible && (
             <Sidebar/>
           )}
-          <MapContainer mapStyles={this.state.mapStylesMobile}/>
+          <MapContainer
+            mapStyles={this.state.mapStylesMobile}
+            closeNav={this.closeNav}
+          />
         </MediaQuery>
         <MediaQuery query="(min-width: 600px)">
           <Sidebar/>

@@ -59,6 +59,9 @@ export class MapContainer extends Component {
   ];
 
   handleMapClick = (props) => {
+    // Close nav upon map click
+    this.props.closeNav();
+
     // Hide infowindow if one is showing already
     if (this.state.showingInfoWindow) {
       this.setState({
