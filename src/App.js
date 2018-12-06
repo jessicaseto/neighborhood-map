@@ -7,7 +7,17 @@ import './App.css';
 export class App extends Component {
   // State
   state = {
-    sidebarVisible: false
+    sidebarVisible: false,
+    mapStylesMobile: {
+      width: '100%',
+      position: 'absolute',
+      left: '0'
+    },
+    mapStylesDesktop: {
+      width: '75%',
+      position: 'absolute',
+      left: '25%'
+    }
   };
 
   // Styles
@@ -30,11 +40,11 @@ export class App extends Component {
             className="hamburger"
             onClick={this.toggleNav}
           >&#9776;</button>
-          {!this.state.sidebarVisible && (
+          {this.state.sidebarVisible && (
             <Sidebar/>
           )}
+          <MapContainer mapStyles={this.state.mapStylesMobile}/>
         </MediaQuery>
-        <MapContainer/>
       </div>
     );
   }

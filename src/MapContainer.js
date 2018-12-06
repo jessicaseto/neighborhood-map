@@ -6,11 +6,7 @@ export class MapContainer extends Component {
   state = {
     activeMarker: {},
     showingInfoWindow: false,
-    mapStyles: {
-      width: '75%',
-      position: 'absolute',
-      left: '25%'
-    }
+    mapStyles: this.props.mapStyles
   };
 
   // Markers array for marker objects

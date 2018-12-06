@@ -8,7 +8,9 @@ class Sidebar extends Component {
       display: 'block',
       width: '25%',
       height: '100%',
-      position: 'absolute'
+      position: 'fixed',
+      background: 'white',
+      zIndex: 2
     }
   };
 
