@@ -5,6 +5,55 @@ import MediaQuery from 'react-responsive';
 import './App.css';
 
 export class App extends Component {
+  // Full list of markers
+  markers = [
+    {
+      name: 'Rattlesnake Ridge',
+      position: {lat: 47.4913444, lng: -121.8002557},
+      title: 'Rattlesnake Ridge'
+    },
+    {
+      name: 'Lake Twenty-Two Trailhead',
+      position: {lat: 48.0768597, lng: -121.7480719},
+      title: 'Lake Twenty-Two'
+    },
+    {
+      name: 'Red Top Lookout',
+      position: {lat: 47.307951, lng: -120.8206112},
+      title: 'Red Top Lookout'
+    },
+    {
+      name: 'Barclay Lake Trailhead',
+      position: {lat: 47.7924958, lng: -121.4615111},
+      title: 'Barclay Lake'
+    },
+    {
+      name: 'Tonga Ridge Trailhead',
+      position: {lat: 47.7924958, lng: -121.4615111},
+      title: 'Tonga Ridge'
+    },
+    {
+      name: 'Cedar Butte Trail',
+      position:{lat: 47.4315858, lng: -121.7480878},
+      title: 'Cedar Butte'
+    },
+    {
+      name: 'Cougar Mountain Regional Wildland Park',
+      position: {lat: 47.528257, lng: -122.1018782},
+      title: 'Cougar Mountain'
+    },
+    {
+      name: 'Washington Park Arboretum UW Botanic Gardens',
+      position: {lat: 47.528257, lng: -122.1018782},
+      title: 'Washington Park Arboretum'
+    },
+    {
+      name: 'Heather Lake Trail',
+      position: {lat: 48.0731133, lng: -121.7870798},
+      title: 'Heather Lake'
+    }
+  ];
+
   // State
   state = {
     screenSize: 'mobile',
@@ -18,7 +67,8 @@ export class App extends Component {
       width: '75%',
       position: 'absolute',
       left: '25%'
-    }
+    },
+    showingMarkers: this.markers
   };
 
   // Styles
@@ -48,19 +98,24 @@ export class App extends Component {
             onClick={this.toggleNav}
           >&#9776;</button>
           {this.state.sidebarVisible && (
-            <Sidebar/>
+            <Sidebar
+              markers={this.state.showingMarkers}
+            />
           )}
           <MapContainer
             mapStyles={this.state.mapStylesMobile}
             closeNav={this.closeNav}
-            screen={this.state.screenSize}
+            markers={this.state.showingMarkers}
           />
         </MediaQuery>
         <MediaQuery query="(min-width: 600px)">
-          <Sidebar/>
+          <Sidebar
+            markers={this.state.showingMarkers}
+          />
           <MapContainer
             mapStyles={this.state.mapStylesDesktop}
             closeNav={this.closeNav}
+            markers={this.state.showingMarkers}
           />
         </MediaQuery>
       </div>

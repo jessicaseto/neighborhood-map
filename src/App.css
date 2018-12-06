@@ -43,3 +43,17 @@
   bottom: 100px;
   z-index: 1;
 }
+
+.hikes-list {
+  margin: 10px 20px;
+  padding: 0;
+  list-style: none;
+}
+
+.hikes-list li {
+  margin: 20px 0;
+}
+
+.hikes-list li:first-of-type {
+  margin: 0 0 20px;
+}

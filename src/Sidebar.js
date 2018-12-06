@@ -21,6 +21,13 @@ class Sidebar extends Component {
         style={this.state.sidebarStyles}
       >
         <h1>Dog Friendly Hikes Near Seattle</h1>
+        <ul className="hikes-list">
+          {this.props.markers.map((marker) =>
+            <li key={marker.name}>
+              {marker.title}
+            </li>
+          )}
+        </ul>
       </div>
     );
   }
