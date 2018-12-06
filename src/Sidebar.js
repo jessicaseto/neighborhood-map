@@ -14,8 +14,11 @@ class Sidebar extends Component {
 
   render() {
     return (
-      <div style={this.state.sidebarStyles}>
-        <h1>Howdy</h1>
+      <div
+        className="sidebar"
+        style={this.state.sidebarStyles}
+      >
+        <h1>Dog Friendly Hikes Near Seattle</h1>
       </div>
     );
   }
