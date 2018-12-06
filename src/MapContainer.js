@@ -25,6 +25,11 @@ export class MapContainer extends Component {
     this.props.showInfoWindow();
   }
 
+  onMarkerMounted = (element) => {
+    // Pass marker to top level
+    this.props.addMarker(element.marker);
+  }
+
   render() {
     return (
       <Map
@@ -34,12 +39,13 @@ export class MapContainer extends Component {
         onClick={this.handleMapClick}
         style={this.state.mapStyles}
       >
-        {this.props.markers.map((marker) =>
+        {this.props.defaultMarkers.map((marker) =>
           <Marker
             key={marker.name}
             name={marker.title}
             position={marker.position}
             onClick={this.handleMarkerClick}
+            ref={this.onMarkerMounted}
           />
         )}
         <InfoWindow

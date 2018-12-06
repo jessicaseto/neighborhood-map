@@ -69,7 +69,7 @@ export class App extends Component {
       left: '25%'
     },
     activeMarker: {},
-    showingMarkers: this.markers,
+    showingMarkers: [],
     showingInfoWindow: false
   };
 
@@ -77,6 +77,12 @@ export class App extends Component {
   containerStyles = {
     width: '100%',
     height: '100%'
+  };
+
+  addMarker = (marker) => {
+    this.setState((prevState) => ({
+      showingMarkers: [...prevState.showingMarkers, marker]
+    }));
   };
 
   activateMarker = (marker) => {
@@ -121,14 +127,18 @@ export class App extends Component {
             <Sidebar
               activateMarker={this.activateMarker}
               markers={this.state.showingMarkers}
+              showInfoWindow={this.showInfoWindow}
+              hideInfoWindow={this.hideInfoWindow}
             />
           )}
           <MapContainer
             mapStyles={this.state.mapStylesMobile}
             closeNav={this.closeNav}
+            addMarker={this.addMarker}
             activeMarker={this.state.activeMarker}
             activateMarker={this.activateMarker}
-            markers={this.state.showingMarkers}
+            defaultMarkers={this.markers}
+            showingMarkers={this.state.showingMarkers}
             showingInfoWindow={this.state.showingInfoWindow}
             showInfoWindow={this.showInfoWindow}
             hideInfoWindow={this.hideInfoWindow}
@@ -138,13 +148,17 @@ export class App extends Component {
           <Sidebar
             activateMarker={this.activateMarker}
             markers={this.state.showingMarkers}
+            showInfoWindow={this.showInfoWindow}
+            hideInfoWindow={this.hideInfoWindow}
           />
           <MapContainer
             mapStyles={this.state.mapStylesDesktop}
             closeNav={this.closeNav}
+            addMarker={this.addMarker}
             activeMarker={this.state.activeMarker}
             activateMarker={this.activateMarker}
-            markers={this.state.showingMarkers}
+            defaultMarkers={this.markers}
+            showingMarkers={this.state.showingMarkers}
             showingInfoWindow={this.state.showingInfoWindow}
             showInfoWindow={this.showInfoWindow}
             hideInfoWindow={this.hideInfoWindow}

@@ -14,6 +14,14 @@ class Sidebar extends Component {
     }
   };
 
+  handleHikeClick = (marker) => {
+    // Activate marker
+    this.props.activateMarker(marker);
+
+    // Activate InfoWindow
+    this.props.showInfoWindow();
+  };
+
   render() {
     return (
       <div
@@ -22,10 +30,15 @@ class Sidebar extends Component {
       >
         <h1>Dog Friendly Hikes Near Seattle</h1>
         <ul className="hikes-list">
-          {this.props.markers.map((marker) =>
-            <li key={marker.name}>
-              {marker.title}
-            </li>
+          {(this.props.markers.length > 0) && (
+            this.props.markers.map((marker) =>
+              <li
+                key={marker.name}
+                onClick={() => this.handleHikeClick(marker)}
+              >
+                {marker.name}
+              </li>
+            )
           )}
         </ul>
       </div>
