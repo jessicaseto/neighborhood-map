@@ -4,6 +4,7 @@ import MapContainer from './MapContainer';
 import './App.css';
 
 export class App extends Component {
+  // Styles
   containerStyles = {
     width: '100%',
     height: '100%'
