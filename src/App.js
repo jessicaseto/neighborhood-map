@@ -35,7 +35,7 @@ export class App extends Component {
   render() {
     return (
       <div style={this.containerStyles}>
-        <MediaQuery query="(max-width: 600px)">
+        <MediaQuery query="(max-width: 599px)">
           <button
             className="hamburger"
             onClick={this.toggleNav}
@@ -44,6 +44,10 @@ export class App extends Component {
             <Sidebar/>
           )}
           <MapContainer mapStyles={this.state.mapStylesMobile}/>
+        </MediaQuery>
+        <MediaQuery query="(min-width: 600px)">
+          <Sidebar/>
+          <MapContainer mapStyles={this.state.mapStylesDesktop}/>
         </MediaQuery>
       </div>
     );
