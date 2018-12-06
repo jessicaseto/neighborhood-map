@@ -4,8 +4,6 @@ import {Map, Marker, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
 export class MapContainer extends Component {
   // state
   state = {
-    activeMarker: {},
-    showingInfoWindow: false,
     mapStyles: this.props.mapStyles
   };
 
@@ -14,20 +12,17 @@ export class MapContainer extends Component {
     this.props.closeNav();
 
     // Hide infowindow if one is showing already
-    if (this.state.showingInfoWindow) {
-      this.setState({
-        activeMarker: {},
-        showingInfoWindow: false
-      })
+    if (this.props.showingInfoWindow) {
+      this.props.hideInfoWindow();
     }
   }
 
   handleMarkerClick = (props, marker, e) => {
+    // Pass active marker to App.js
+    this.props.activateMarker(marker);
+
     // Show infowindow on marker click
-    this.setState({
-      activeMarker: marker,
-      showingInfoWindow: true
-    });
+    this.props.showInfoWindow();
   }
 
   render() {
@@ -48,10 +43,10 @@ export class MapContainer extends Component {
           />
         )}
         <InfoWindow
-          marker={this.state.activeMarker}
-          visible={this.state.showingInfoWindow}
+          marker={this.props.activeMarker}
+          visible={this.props.showingInfoWindow}
         >
-          <div><h1>{this.state.activeMarker.name}</h1></div>
+          <div><h1>{this.props.activeMarker.name}</h1></div>
         </InfoWindow>
       </Map>
     );

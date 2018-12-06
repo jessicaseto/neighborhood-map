@@ -68,13 +68,33 @@ export class App extends Component {
       position: 'absolute',
       left: '25%'
     },
-    showingMarkers: this.markers
+    activeMarker: {},
+    showingMarkers: this.markers,
+    showingInfoWindow: false
   };
 
   // Styles
   containerStyles = {
     width: '100%',
     height: '100%'
+  };
+
+  activateMarker = (marker) => {
+    this.setState({
+      activeMarker: marker
+    });
+  };
+
+  showInfoWindow = () => {
+    this.setState({
+      showingInfoWindow: true
+    });
+  };
+
+  hideInfoWindow = () => {
+    this.setState({
+      showingInfoWindow: false
+    });
   };
 
   toggleNav = () => {
@@ -99,23 +119,35 @@ export class App extends Component {
           >&#9776;</button>
           {this.state.sidebarVisible && (
             <Sidebar
+              activateMarker={this.activateMarker}
               markers={this.state.showingMarkers}
             />
           )}
           <MapContainer
             mapStyles={this.state.mapStylesMobile}
             closeNav={this.closeNav}
+            activeMarker={this.state.activeMarker}
+            activateMarker={this.activateMarker}
             markers={this.state.showingMarkers}
+            showingInfoWindow={this.state.showingInfoWindow}
+            showInfoWindow={this.showInfoWindow}
+            hideInfoWindow={this.hideInfoWindow}
           />
         </MediaQuery>
         <MediaQuery query="(min-width: 600px)">
           <Sidebar
+            activateMarker={this.activateMarker}
             markers={this.state.showingMarkers}
           />
           <MapContainer
             mapStyles={this.state.mapStylesDesktop}
             closeNav={this.closeNav}
+            activeMarker={this.state.activeMarker}
+            activateMarker={this.activateMarker}
             markers={this.state.showingMarkers}
+            showingInfoWindow={this.state.showingInfoWindow}
+            showInfoWindow={this.showInfoWindow}
+            hideInfoWindow={this.hideInfoWindow}
           />
         </MediaQuery>
       </div>

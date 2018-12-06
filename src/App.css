@@ -52,6 +52,7 @@
 
 .hikes-list li {
   margin: 20px 0;
+  cursor: pointer;
 }
 
 .hikes-list li:first-of-type {
