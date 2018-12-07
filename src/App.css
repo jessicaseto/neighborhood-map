@@ -67,10 +67,16 @@
   height: 100%;
 }
 
+.sidebar {
+  background: #2e2e2e;
+  height: calc(100vh - 50px);
+}
+
 .sidebar h1 {
-  margin: 0;
-  padding: 20px;
-  font-size: 1.5em;
+  margin: 20px;
+  font-size: 1.25em;
+  text-decoration: underline;
+  color: white;
 }
 
 .hikes-list {
@@ -82,6 +88,7 @@
 .hikes-list li {
   margin: 20px 0;
   cursor: pointer;
+  color: white;
 }
 
 .hikes-list li:first-of-type {
@@ -98,5 +105,16 @@
 @media only screen and (min-width: 600px) {
   .nav .title h1 {
     font-size: 1.5em;
+  }
+
+  .sidebar {
+    position: fixed;
+    width: 250px;
+  }
+
+  .container-element {
+    position: fixed;
+    width: calc(100vw - 250px);
+    left: 250px;
   }
 }

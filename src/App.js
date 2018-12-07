@@ -69,7 +69,7 @@ export class App extends Component {
       left: '25%'
     },
     activeMarker: {},
-    showingMarkers: [],
+    showingMarkers: this.markers,
     showingInfoWindow: false
   };
 
@@ -125,6 +125,9 @@ export class App extends Component {
             <h1>Dog Friendly Hikes Near Seattle</h1>
           </div>
         </nav>
+        <Sidebar
+          markers={this.state.showingMarkers}
+        />
         <MapContainer
           defaultMarkers={this.markers}
           showingMarkers={this.state.showingMarkers}
