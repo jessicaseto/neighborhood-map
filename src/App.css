@@ -15,7 +15,7 @@
   align-items: center;
   justify-content: center;
   font-size: calc(10px + 2vmin);
-  color: white;
+  color: #fff;
 }
 
 .App-link {
@@ -44,6 +44,17 @@
   padding: 0 15px;
   margin: 0 10px 0 0;
   font-size: 25px;
+  cursor: pointer;
+}
+
+.nav .hamburger:hover {
+  background: #2e2e2e;
+  color: #fff;
+}
+
+.nav .hamburger.show {
+  background: #2e2e2e;
+  color: #fff;
 }
 
 .nav .title {
@@ -78,7 +89,7 @@
   height: calc(100vh - 50px);
 }
 
-.show {
+.sidebar.show {
   left: 0;
   z-index: 1;
 }
@@ -87,7 +98,7 @@
   margin: 20px;
   font-size: 1.25em;
   text-decoration: underline;
-  color: white;
+  color: #fff;
 }
 
 .hikes-list {
@@ -99,7 +110,7 @@
 .hikes-list li {
   margin: 20px 0;
   cursor: pointer;
-  color: white;
+  color: #fff;
 }
 
 .hikes-list li:first-of-type {

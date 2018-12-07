@@ -57,7 +57,7 @@ export class App extends Component {
   // State
   state = {
     screenSize: 'mobile',
-    sidebarVisible: false,
+    sidebarVisible: 'hide',
     mapStylesMobile: {
       width: '100%',
       position: 'absolute',
@@ -109,7 +109,7 @@ export class App extends Component {
 
   closeNav = () => {
     this.setState({
-      sidebarVisible: false
+      sidebarVisible: 'hide'
     });
   };
 
@@ -118,7 +118,7 @@ export class App extends Component {
       <div style={this.containerStyles}>
         <nav className="nav">
           <button
-            className="hamburger"
+            className={"hamburger " + this.state.sidebarVisible}
             onClick={this.toggleNav}
           >&#9776;</button>
           <div className="title">
