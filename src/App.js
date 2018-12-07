@@ -1,7 +1,6 @@
 import React, { Component } from 'react';
 import Sidebar from './Sidebar';
 import MapContainer from './MapContainer';
-import MediaQuery from 'react-responsive';
 import './App.css';
 
 export class App extends Component {
