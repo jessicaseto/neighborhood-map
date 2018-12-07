@@ -103,7 +103,7 @@ export class App extends Component {
 
   toggleNav = () => {
     this.setState({
-      sidebarVisible: !this.state.sidebarVisible
+      sidebarVisible: (this.state.sidebarVisible === 'show') ? 'hide' : 'show'
     });
   };
 

@@ -78,7 +78,7 @@
   height: calc(100vh - 50px);
 }
 
-.true {
+.show {
   left: 0;
   z-index: 1;
 }
