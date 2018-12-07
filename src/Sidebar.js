@@ -13,9 +13,17 @@ class Sidebar extends Component {
   };
 
   handleInputChange = (event) => {
+    // Update query in state
     this.setState({
       query: event.target.value
-    }, () => {console.log(this.state.query)});
+    },
+    // After query is updated, filter showingMarkers
+    () => {
+      const newMarkers = this.props.defaultMarkers.filter((marker) =>
+        marker.name.includes(this.state.query)
+      );
+      this.props.updateShowingMarkers(newMarkers);
+    });
   };
 
   render() {
@@ -31,8 +39,8 @@ class Sidebar extends Component {
           onChange={this.handleInputChange}
         />
         <ul className="hikes-list">
-          {(this.props.markers.length > 0) && (
-            this.props.markers.map((marker) =>
+          {(this.props.showingMarkers.length > 0) && (
+            this.props.showingMarkers.map((marker) =>
               <li
                 key={marker.name}
                 onClick={() => this.handleHikeClick(marker)}

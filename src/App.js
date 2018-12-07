@@ -122,6 +122,12 @@ export class App extends Component {
     });
   };
 
+  updateShowingMarkers = (markers) => {
+    this.setState({
+      showingMarkers: markers
+    });
+  };
+
   render() {
     return (
       <div style={this.containerStyles}>
@@ -135,9 +141,11 @@ export class App extends Component {
           </div>
         </nav>
         <Sidebar
-          markers={this.state.showingMarkers}
+          defaultMarkers={this.markers}
+          showingMarkers={this.state.showingMarkers}
           sidebarVisible={this.state.sidebarVisible}
           activateMarker={this.activateMarker}
+          updateShowingMarkers={this.updateShowingMarkers}
         />
         <MapContainer
           defaultMarkers={this.markers}
