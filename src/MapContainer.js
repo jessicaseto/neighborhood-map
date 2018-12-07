@@ -41,7 +41,7 @@ class MapContainer extends Component {
 
     // Hide infowindow
     this.props.hideInfoWindow();
-  }
+  };
 
   handleMarkerClick = (marker) => {
     // Pass active marker to App.js
@@ -49,24 +49,24 @@ class MapContainer extends Component {
 
     // Close nav upon marker click
     this.props.closeNav();
-  }
+  };
 
   onMarkerMounted = (element) => {
     // Pass marker to top level
     if (element) {
       this.props.addMarker(element.marker);
-    }
-  }
+    };
+  };
 
   handleInfoWindowClose = () => {
     this.props.closeInfoWindow();
-  }
+  };
 
   onInfoWindowMounted = (element) => {
     if (element) {
       console.log(element.infowindow);
-    }
-  }
+    };
+  };
 
   render() {
     return (
@@ -81,8 +81,8 @@ class MapContainer extends Component {
         mapElement = {
           <div className="map-element"/>
         }
-        onMarkerClick={this.handleMarkerClick}
         onMapClick={this.handleMapClick}
+        onMarkerClick={this.handleMarkerClick}
         {...this.props}
       >
       </Map>
