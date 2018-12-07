@@ -102,6 +102,14 @@
   color: #fff;
 }
 
+.sidebar .hikes-search {
+  margin: 10px 20px;
+  padding: 0 10px;
+  height: 30px;
+  font-size: 1em;
+  color: #2e2e2e;
+}
+
 .hikes-list {
   margin: 10px 20px;
   padding: 0;
