@@ -145,10 +145,10 @@ export class App extends Component {
           showingMarkers={this.state.showingMarkers}
           sidebarVisible={this.state.sidebarVisible}
           activateMarker={this.activateMarker}
+          hideInfoWindow={this.hideInfoWindow}
           updateShowingMarkers={this.updateShowingMarkers}
         />
         <MapContainer
-          defaultMarkers={this.markers}
           showingMarkers={this.state.showingMarkers}
           activateMarker={this.activateMarker}
           activeMarker={this.state.activeMarker}

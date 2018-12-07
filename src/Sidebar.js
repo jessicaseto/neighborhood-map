@@ -24,6 +24,9 @@ class Sidebar extends Component {
       );
       this.props.updateShowingMarkers(newMarkers);
     });
+
+    // Hide InfoWindow
+    this.props.hideInfoWindow();
   };
 
   render() {

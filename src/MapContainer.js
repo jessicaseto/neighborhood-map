@@ -7,7 +7,7 @@ const Map = withScriptjs(withGoogleMap((props) =>
     defaultZoom={8}
     onClick={props.onMapClick}
   >
-    {props.defaultMarkers.map((marker) =>
+    {props.showingMarkers.map((marker) =>
       <Marker
         key={marker.name}
         position={marker.position}
