@@ -31,12 +31,36 @@
   }
 }
 
+.nav {
+  height: 50px;
+  display: flex;
+  align-items: center;
+}
+
+.nav .hamburger {
+  background: none;
+  border: 0;
+  height: 50px;
+  padding: 0 15px;
+  margin: 0 10px 0 0;
+  font-size: 25px;
+}
+
+.nav .title {
+  display: inline-block;
+}
+
+.nav .title h1 {
+  margin: 0;
+  font-size: 1em;
+}
+
 .loading-element {
   height: 100%;
 }
 
 .container-element {
-  height: 100vh;
+  height: calc(100vh - 50px);
 }
 
 .map-element {
@@ -47,13 +71,6 @@
   margin: 0;
   padding: 20px;
   font-size: 1.5em;
-}
-
-.hamburger {
-  position: fixed;
-  left: 200px;
-  bottom: 100px;
-  z-index: 1;
 }
 
 .hikes-list {
@@ -69,4 +86,17 @@
 
 .hikes-list li:first-of-type {
   margin: 0 0 20px;
+}
+
+/* Responsiveness */
+@media only screen and (min-width: 500px) {
+  .nav .title h1 {
+    font-size: 1.25em;
+  }
+}
+
+@media only screen and (min-width: 600px) {
+  .nav .title h1 {
+    font-size: 1.5em;
+  }
 }

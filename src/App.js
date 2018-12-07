@@ -116,10 +116,15 @@ export class App extends Component {
   render() {
     return (
       <div style={this.containerStyles}>
-        <button
-          className="hamburger"
-          onClick={this.toggleNav}
-        >&#9776;</button>
+        <nav className="nav">
+          <button
+            className="hamburger"
+            onClick={this.toggleNav}
+          >&#9776;</button>
+          <div className="title">
+            <h1>Dog Friendly Hikes Near Seattle</h1>
+          </div>
+        </nav>
         <MapContainer
           defaultMarkers={this.markers}
           showingMarkers={this.state.showingMarkers}
