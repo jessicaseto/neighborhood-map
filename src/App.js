@@ -129,6 +129,7 @@ export class App extends Component {
         <Sidebar
           markers={this.state.showingMarkers}
           sidebarVisible={this.state.sidebarVisible}
+          activateMarker={this.activateMarker}
         />
         <MapContainer
           defaultMarkers={this.markers}

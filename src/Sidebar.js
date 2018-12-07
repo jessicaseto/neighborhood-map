@@ -3,7 +3,6 @@ import React, { Component } from 'react';
 class Sidebar extends Component {
   handleHikeClick = (marker) => {
     // Activate marker
-    console.log('calling activateMarker from handleHikeClick', marker);
     this.props.activateMarker(marker);
   };
 
