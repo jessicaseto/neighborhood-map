@@ -28,7 +28,7 @@ export class App extends Component {
     },
     {
       name: 'Tonga Ridge Trailhead',
-      position: {lat: 47.7924958, lng: -121.4615111},
+      position: {lat: 47.6780863, lng: -121.2656751},
       title: 'Tonga Ridge'
     },
     {
@@ -43,7 +43,7 @@ export class App extends Component {
     },
     {
       name: 'Washington Park Arboretum UW Botanic Gardens',
-      position: {lat: 47.528257, lng: -122.1018782},
+      position: {lat: 47.6397989, lng: -122.2966645},
       title: 'Washington Park Arboretum'
     },
     {
@@ -70,7 +70,7 @@ export class App extends Component {
     activeMarker: {},
     showingMarkers: this.markers,
     showingInfoWindow: false,
-    markerClicked: false
+    animateMarker: false
   };
 
   // Styles
@@ -89,7 +89,7 @@ export class App extends Component {
     this.setState({
       activeMarker: marker,
       showingInfoWindow: true,
-      markerClicked: true
+      animateMarker: true
     });
   };
 
@@ -97,7 +97,8 @@ export class App extends Component {
     if (this.state.showingInfoWindow) {
       this.setState({
         activeMarker: {},
-        showingInfoWindow: false
+        showingInfoWindow: false,
+        animateMarker: false
       });
     }
   };
@@ -138,7 +139,7 @@ export class App extends Component {
           activeMarker={this.state.activeMarker}
           showingInfoWindow={this.state.showingInfoWindow}
           hideInfoWindow={this.hideInfoWindow}
-          markerClicked={this.state.markerClicked}
+          animateMarker={this.state.animateMarker}
         />
       </div>
     );

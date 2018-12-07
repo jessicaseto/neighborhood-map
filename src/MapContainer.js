@@ -12,7 +12,7 @@ const Map = withScriptjs(withGoogleMap((props) =>
         key={marker.name}
         position={marker.position}
         onClick={() => props.onMarkerClick(marker)}
-        animation={() => props.animateMarker(marker)}
+        animation={props.animateMarker && (window.google.maps.Animation.DROP)}
       />
     )}
     {props.showingInfoWindow && (
