@@ -147,6 +147,7 @@ export class App extends Component {
           showingInfoWindow={this.state.showingInfoWindow}
           hideInfoWindow={this.hideInfoWindow}
           animateMarker={this.state.animateMarker}
+          closeNav={this.closeNav}
         />
       </div>
     );

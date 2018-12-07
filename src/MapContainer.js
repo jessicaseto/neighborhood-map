@@ -5,7 +5,7 @@ const Map = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultCenter={{lat: 47.615022, lng: -122.148878}}
     defaultZoom={8}
-    onClick={props.hideInfoWindow}
+    onClick={props.onMapClick}
   >
     {props.defaultMarkers.map((marker) =>
       <Marker
@@ -46,6 +46,9 @@ class MapContainer extends Component {
   handleMarkerClick = (marker) => {
     // Pass active marker to App.js
     this.props.activateMarker(marker);
+
+    // Close nav upon marker click
+    this.props.closeNav();
   }
 
   onMarkerMounted = (element) => {
@@ -79,6 +82,7 @@ class MapContainer extends Component {
           <div className="map-element"/>
         }
         onMarkerClick={this.handleMarkerClick}
+        onMapClick={this.handleMapClick}
         {...this.props}
       >
       </Map>
