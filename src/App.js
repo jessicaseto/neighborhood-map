@@ -127,6 +127,7 @@ export class App extends Component {
         </nav>
         <Sidebar
           markers={this.state.showingMarkers}
+          sidebarVisible={this.state.sidebarVisible}
         />
         <MapContainer
           defaultMarkers={this.markers}

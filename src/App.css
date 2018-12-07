@@ -67,12 +67,23 @@
   height: 100%;
 }
 
+.info-window-h2 {
+  font-size: 1em;
+}
+
 .sidebar {
+  position: fixed;
+  left: -250px;
   background: #2e2e2e;
   height: calc(100vh - 50px);
 }
 
-.sidebar h1 {
+.true {
+  left: 0;
+  z-index: 1;
+}
+
+.sidebar h2 {
   margin: 20px;
   font-size: 1.25em;
   text-decoration: underline;
@@ -103,12 +114,19 @@
 }
 
 @media only screen and (min-width: 600px) {
+  .nav .hamburger {
+    position: fixed;
+    left: -50px;
+  }
+
   .nav .title h1 {
+    margin: 0 20px;
     font-size: 1.5em;
   }
 
   .sidebar {
     position: fixed;
+    left: 0;
     width: 250px;
   }
 

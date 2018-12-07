@@ -19,7 +19,7 @@ const Map = withScriptjs(withGoogleMap((props) =>
         options={{pixelOffset: new window.google.maps.Size(0,-40)}}
         visible={props.showingInfoWindow}
       >
-        <h1>{props.activeMarker.title}</h1>
+        <h2 className="info-window-h2">{props.activeMarker.title}</h2>
       </InfoWindow>
     )}
   </GoogleMap>

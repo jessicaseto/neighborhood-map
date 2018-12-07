@@ -10,9 +10,9 @@ class Sidebar extends Component {
   render() {
     return (
       <div
-        className="sidebar"
+        className={"sidebar " + this.props.sidebarVisible}
       >
-        <h1>List of Hikes</h1>
+        <h2>List of Hikes</h2>
         <ul className="hikes-list">
           {(this.props.markers.length > 0) && (
             this.props.markers.map((marker) =>
