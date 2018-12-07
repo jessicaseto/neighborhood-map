@@ -91,6 +91,13 @@ export class App extends Component {
       showingInfoWindow: true,
       animateMarker: true
     });
+
+    // Limit marker animation to 500 ms
+    setTimeout(() => {
+      this.setState({
+        animateMarker: false
+      });
+    }, 500);
   };
 
   hideInfoWindow = () => {

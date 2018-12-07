@@ -12,7 +12,14 @@ const Map = withScriptjs(withGoogleMap((props) =>
         key={marker.name}
         position={marker.position}
         onClick={() => props.onMarkerClick(marker)}
-        animation={props.animateMarker && (window.google.maps.Animation.DROP)}
+        animation={props.animateMarker ? (
+          ((marker.name === props.activeMarker.name) && (
+              window.google.maps.Animation.BOUNCE
+          ))) : (
+          ((marker.name === props.activeMarker.name) && (
+            window.google.maps.Animation.null
+          )))
+        }
       />
     )}
     {props.showingInfoWindow && (
@@ -28,11 +35,6 @@ const Map = withScriptjs(withGoogleMap((props) =>
 ));
 
 class MapContainer extends Component {
-  // State
-  state = {
-    activeMarker: {name: 'test'}
-  };
-
   handleMapClick = (props) => {
     // Close nav upon map click
     this.props.closeNav();
@@ -42,19 +44,8 @@ class MapContainer extends Component {
   }
 
   handleMarkerClick = (marker) => {
-    // Set state in MapContainer
-    this.setState({
-      activeMarker: marker
-    });
-
     // Pass active marker to App.js
     this.props.activateMarker(marker);
-  }
-
-  animateMarker = (marker) => {
-    if (marker.name === this.state.activeMarker.name) {
-      return window.google.maps.animation.BOUNCE;
-    }
   }
 
   onMarkerMounted = (element) => {
@@ -88,7 +79,6 @@ class MapContainer extends Component {
           <div className="map-element"/>
         }
         onMarkerClick={this.handleMarkerClick}
-        animateMarker={this.animateMarker}
         {...this.props}
       >
       </Map>
