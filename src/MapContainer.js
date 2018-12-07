@@ -5,19 +5,21 @@ const Map = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultCenter={{lat: 47.615022, lng: -122.148878}}
     defaultZoom={8}
+    onClick={props.hideInfoWindow}
   >
     {props.defaultMarkers.map((marker) =>
       <Marker
         key={marker.name}
         position={marker.position}
         onClick={() => props.onMarkerClick(marker)}
+        animation={() => props.animateMarker(marker)}
       />
     )}
-    {(Object.keys(props.activeMarker).length !== 0) && (
+    {props.showingInfoWindow && (
       <InfoWindow
         position={props.activeMarker.position}
         options={{pixelOffset: new window.google.maps.Size(0,-40)}}
-        visible={props.showingInfoWindow}
+        onCloseClick={props.hideInfoWindow}
       >
         <h2 className="info-window-h2">{props.activeMarker.title}</h2>
       </InfoWindow>
@@ -26,6 +28,11 @@ const Map = withScriptjs(withGoogleMap((props) =>
 ));
 
 class MapContainer extends Component {
+  // State
+  state = {
+    activeMarker: {name: 'test'}
+  };
+
   handleMapClick = (props) => {
     // Close nav upon map click
     this.props.closeNav();
@@ -35,8 +42,19 @@ class MapContainer extends Component {
   }
 
   handleMarkerClick = (marker) => {
+    // Set state in MapContainer
+    this.setState({
+      activeMarker: marker
+    });
+
     // Pass active marker to App.js
     this.props.activateMarker(marker);
+  }
+
+  animateMarker = (marker) => {
+    if (marker.name === this.state.activeMarker.name) {
+      return window.google.maps.animation.BOUNCE;
+    }
   }
 
   onMarkerMounted = (element) => {
@@ -44,6 +62,10 @@ class MapContainer extends Component {
     if (element) {
       this.props.addMarker(element.marker);
     }
+  }
+
+  handleInfoWindowClose = () => {
+    this.props.closeInfoWindow();
   }
 
   onInfoWindowMounted = (element) => {
@@ -66,6 +88,7 @@ class MapContainer extends Component {
           <div className="map-element"/>
         }
         onMarkerClick={this.handleMarkerClick}
+        animateMarker={this.animateMarker}
         {...this.props}
       >
       </Map>

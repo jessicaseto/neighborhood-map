@@ -69,7 +69,8 @@ export class App extends Component {
     },
     activeMarker: {},
     showingMarkers: this.markers,
-    showingInfoWindow: false
+    showingInfoWindow: false,
+    markerClicked: false
   };
 
   // Styles
@@ -87,7 +88,8 @@ export class App extends Component {
   activateMarker = (marker) => {
     this.setState({
       activeMarker: marker,
-      showingInfoWindow: true
+      showingInfoWindow: true,
+      markerClicked: true
     });
   };
 
@@ -134,6 +136,8 @@ export class App extends Component {
           activateMarker={this.activateMarker}
           activeMarker={this.state.activeMarker}
           showingInfoWindow={this.state.showingInfoWindow}
+          hideInfoWindow={this.hideInfoWindow}
+          markerClicked={this.state.markerClicked}
         />
       </div>
     );
