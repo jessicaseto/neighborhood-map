@@ -16,10 +16,8 @@ class Sidebar extends Component {
 
   handleHikeClick = (marker) => {
     // Activate marker
+    console.log('calling activateMarker from handleHikeClick', marker);
     this.props.activateMarker(marker);
-
-    // Activate InfoWindow
-    this.props.showInfoWindow();
   };
 
   render() {

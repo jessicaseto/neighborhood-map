@@ -31,6 +31,18 @@
   }
 }
 
+.loading-element {
+  height: 100%;
+}
+
+.container-element {
+  height: 100vh;
+}
+
+.map-element {
+  height: 100%;
+}
+
 .sidebar h1 {
   margin: 0;
   padding: 20px;

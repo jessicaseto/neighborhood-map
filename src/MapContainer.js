@@ -1,64 +1,76 @@
 import React, { Component } from 'react';
-import {Map, Marker, InfoWindow, GoogleApiWrapper} from 'google-maps-react';
+import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 
-export class MapContainer extends Component {
-  // state
-  state = {
-    mapStyles: this.props.mapStyles
-  };
+const Map = withScriptjs(withGoogleMap((props) =>
+  <GoogleMap
+    defaultCenter={{lat: 47.615022, lng: -122.148878}}
+    defaultZoom={8}
+  >
+    {props.defaultMarkers.map((marker) =>
+      <Marker
+        key={marker.name}
+        position={marker.position}
+        onClick={() => props.onMarkerClick(marker)}
+      />
+    )}
+    {(Object.keys(props.activeMarker).length !== 0) && (
+      <InfoWindow
+        position={props.activeMarker.position}
+        options={{pixelOffset: new window.google.maps.Size(0,-40)}}
+        visible={props.showingInfoWindow}
+      >
+        <h1>{props.activeMarker.title}</h1>
+      </InfoWindow>
+    )}
+  </GoogleMap>
+));
 
+class MapContainer extends Component {
   handleMapClick = (props) => {
     // Close nav upon map click
     this.props.closeNav();
 
-    // Hide infowindow if one is showing already
-    if (this.props.showingInfoWindow) {
-      this.props.hideInfoWindow();
-    }
+    // Hide infowindow
+    this.props.hideInfoWindow();
   }
 
-  handleMarkerClick = (props, marker, e) => {
+  handleMarkerClick = (marker) => {
     // Pass active marker to App.js
     this.props.activateMarker(marker);
-
-    // Show infowindow on marker click
-    this.props.showInfoWindow();
   }
 
   onMarkerMounted = (element) => {
     // Pass marker to top level
-    this.props.addMarker(element.marker);
+    if (element) {
+      this.props.addMarker(element.marker);
+    }
+  }
+
+  onInfoWindowMounted = (element) => {
+    if (element) {
+      console.log(element.infowindow);
+    }
   }
 
   render() {
     return (
       <Map
-        google={this.props.google}
-        initialCenter={{lat: 47.615022, lng: -122.148878}}
-        zoom={8}
-        onClick={this.handleMapClick}
-        style={this.state.mapStyles}
+        googleMapURL="https://maps.googleapis.com/maps/api/js?key=AIzaSyBqpBnwVoGdiPfRLdW08dfLmbluuL_f1Po&v=3.exp"
+        loadingElement = {
+          <div className="loading-element"/>
+        }
+        containerElement = {
+          <div className="container-element"/>
+        }
+        mapElement = {
+          <div className="map-element"/>
+        }
+        onMarkerClick={this.handleMarkerClick}
+        {...this.props}
       >
-        {this.props.defaultMarkers.map((marker) =>
-          <Marker
-            key={marker.name}
-            name={marker.title}
-            position={marker.position}
-            onClick={this.handleMarkerClick}
-            ref={this.onMarkerMounted}
-          />
-        )}
-        <InfoWindow
-          marker={this.props.activeMarker}
-          visible={this.props.showingInfoWindow}
-        >
-          <div><h1>{this.props.activeMarker.name}</h1></div>
-        </InfoWindow>
       </Map>
     );
   }
 }
 
-export default GoogleApiWrapper({
-  apiKey: 'AIzaSyBqpBnwVoGdiPfRLdW08dfLmbluuL_f1Po'
-})(MapContainer)
+export default MapContainer;

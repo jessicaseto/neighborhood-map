@@ -87,20 +87,18 @@ export class App extends Component {
 
   activateMarker = (marker) => {
     this.setState({
-      activeMarker: marker
-    });
-  };
-
-  showInfoWindow = () => {
-    this.setState({
+      activeMarker: marker,
       showingInfoWindow: true
     });
   };
 
   hideInfoWindow = () => {
-    this.setState({
-      showingInfoWindow: false
-    });
+    if (this.state.showingInfoWindow) {
+      this.setState({
+        activeMarker: {},
+        showingInfoWindow: false
+      });
+    }
   };
 
   toggleNav = () => {
@@ -118,52 +116,17 @@ export class App extends Component {
   render() {
     return (
       <div style={this.containerStyles}>
-        <MediaQuery query="(max-width: 599px)">
-          <button
-            className="hamburger"
-            onClick={this.toggleNav}
-          >&#9776;</button>
-          {this.state.sidebarVisible && (
-            <Sidebar
-              activateMarker={this.activateMarker}
-              markers={this.state.showingMarkers}
-              showInfoWindow={this.showInfoWindow}
-              hideInfoWindow={this.hideInfoWindow}
-            />
-          )}
-          <MapContainer
-            mapStyles={this.state.mapStylesMobile}
-            closeNav={this.closeNav}
-            addMarker={this.addMarker}
-            activeMarker={this.state.activeMarker}
-            activateMarker={this.activateMarker}
-            defaultMarkers={this.markers}
-            showingMarkers={this.state.showingMarkers}
-            showingInfoWindow={this.state.showingInfoWindow}
-            showInfoWindow={this.showInfoWindow}
-            hideInfoWindow={this.hideInfoWindow}
-          />
-        </MediaQuery>
-        <MediaQuery query="(min-width: 600px)">
-          <Sidebar
-            activateMarker={this.activateMarker}
-            markers={this.state.showingMarkers}
-            showInfoWindow={this.showInfoWindow}
-            hideInfoWindow={this.hideInfoWindow}
-          />
-          <MapContainer
-            mapStyles={this.state.mapStylesDesktop}
-            closeNav={this.closeNav}
-            addMarker={this.addMarker}
-            activeMarker={this.state.activeMarker}
-            activateMarker={this.activateMarker}
-            defaultMarkers={this.markers}
-            showingMarkers={this.state.showingMarkers}
-            showingInfoWindow={this.state.showingInfoWindow}
-            showInfoWindow={this.showInfoWindow}
-            hideInfoWindow={this.hideInfoWindow}
-          />
-        </MediaQuery>
+        <button
+          className="hamburger"
+          onClick={this.toggleNav}
+        >&#9776;</button>
+        <MapContainer
+          defaultMarkers={this.markers}
+          showingMarkers={this.state.showingMarkers}
+          activateMarker={this.activateMarker}
+          activeMarker={this.state.activeMarker}
+          showingInfoWindow={this.state.showingInfoWindow}
+        />
       </div>
     );
   }
