@@ -23,7 +23,7 @@ class Sidebar extends Component {
         this.props.updateShowingMarkers(this.props.defaultMarkers);
       } else {
         const newMarkers = this.props.defaultMarkers.filter((marker) =>
-          marker.name.toLowerCase().includes(this.state.query.toLowerCase())
+          marker.title.toLowerCase().includes(this.state.query.toLowerCase())
         );
         this.props.updateShowingMarkers(newMarkers);
       }
@@ -41,6 +41,7 @@ class Sidebar extends Component {
         <h2>List of Hikes</h2>
         <DebounceInput
           className="hikes-search"
+          minLength={1}
           debounceTimeout={300}
           type="text"
           onChange={this.handleInputChange}
