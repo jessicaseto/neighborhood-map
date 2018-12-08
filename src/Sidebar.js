@@ -46,6 +46,9 @@ class Sidebar extends Component {
             this.props.showingMarkers.map((marker) =>
               <li
                 key={marker.name}
+                className={(marker.name === this.props.activeMarker.name) ?
+                  "highlight" : ""
+                }
                 onClick={() => this.handleHikeClick(marker)}
               >
                 {marker.title}

@@ -98,7 +98,6 @@
 .sidebar h2 {
   margin: 20px;
   font-size: 1.25em;
-  text-decoration: underline;
   color: #fff;
 }
 
@@ -111,23 +110,23 @@
 }
 
 .hikes-list {
-  margin: 10px 20px;
+  margin: 10px 0;
   padding: 0;
   list-style: none;
 }
 
 .hikes-list li {
-  margin: 20px 0;
+  padding: 15px 20px;
   cursor: pointer;
   color: #fff;
 }
 
-.hikes-list li:first-of-type {
-  margin: 0 0 20px;
-}
-
 .hikes-list li:hover {
   font-weight: bold;
+}
+
+.hikes-list li.highlight {
+  background-color: #000;
 }
 
 /* Responsiveness */

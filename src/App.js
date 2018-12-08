@@ -144,6 +144,7 @@ export class App extends Component {
           defaultMarkers={this.markers}
           showingMarkers={this.state.showingMarkers}
           sidebarVisible={this.state.sidebarVisible}
+          activeMarker={this.state.activeMarker}
           activateMarker={this.activateMarker}
           hideInfoWindow={this.hideInfoWindow}
           updateShowingMarkers={this.updateShowingMarkers}
