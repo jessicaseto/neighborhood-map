@@ -44,6 +44,7 @@ class Sidebar extends Component {
           minLength={1}
           debounceTimeout={300}
           type="text"
+          placeholder="Filter by hike name"
           onChange={this.handleInputChange}
         />
         <ul className="hikes-list">
