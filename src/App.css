@@ -46,7 +46,7 @@
   border: 0;
   height: 50px;
   padding: 0 15px;
-  margin: 0 10px 0 0;
+  margin: 0;
   font-size: 25px;
   cursor: pointer;
 }
@@ -66,8 +66,14 @@
 }
 
 .nav .title h1 {
-  margin: 0;
-  font-size: 1em;
+  display: inline-block;
+  margin: 0 10px;
+  font-size: 0.8em;
+}
+
+.nav .title .fa-dog {
+  display: inline-block;
+  font-size: 16px;
 }
 
 .loading-element {
@@ -90,8 +96,10 @@
   position: fixed;
   left: -275px;
   background: #2e2e2e;
-  height: calc(100vh - 50px);
+  height: calc(100% - 50px);
   width: 275px;
+  opacity: 0.9;
+  overflow-y: scroll;
 }
 
 .sidebar.show {
@@ -113,28 +121,52 @@
   color: #2e2e2e;
 }
 
-.hikes-list {
+.sidebar::-webkit-scrollbar {
+  width: 10px;
+}
+
+.sidebar::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  background-color: #2e2e2e;
+}
+
+.sidebar::-webkit-scrollbar-thumb {
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+.sidebar .hikes-list {
   margin: 10px 0;
   padding: 0;
   list-style: none;
 }
 
-.hikes-list li {
+.sidebar .hikes-list li {
   padding: 15px 20px;
   cursor: pointer;
   color: #fff;
   font-size: 0.9em;
 }
 
-.hikes-list li:hover {
+.sidebar .hikes-list li:hover {
   font-weight: bold;
 }
 
-.hikes-list li.highlight {
+.sidebar .hikes-list li.highlight {
   background-color: #000;
 }
 
 /* Responsiveness */
+@media only screen and (min-width: 350px) {
+  .nav .title h1 {
+    font-size: 0.9em;
+  }
+
+  .nav .title .fa-dog {
+    font-size: 18px;
+  }
+}
+
 @media only screen and (min-width: 500px) {
   .nav .title h1 {
     font-size: 1.25em;
@@ -150,6 +182,10 @@
   .nav .title h1 {
     margin: 0 20px;
     font-size: 1.5em;
+  }
+
+  .nav .title .fa-dog {
+    font-size: 25px;
   }
 
   .sidebar {

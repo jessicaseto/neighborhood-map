@@ -138,6 +138,7 @@ export class App extends Component {
           >&#9776;</button>
           <div className="title">
             <h1>Dog Friendly Hikes Near Seattle</h1>
+            <i className="fas fa-dog"></i>
           </div>
         </nav>
         <Sidebar
