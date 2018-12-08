@@ -20,7 +20,7 @@ class Sidebar extends Component {
     // After query is updated, filter showingMarkers
     () => {
       const newMarkers = this.props.defaultMarkers.filter((marker) =>
-        marker.name.includes(this.state.query)
+        marker.name.toLowerCase().includes(this.state.query)
       );
       this.props.updateShowingMarkers(newMarkers);
     });
