@@ -19,10 +19,14 @@ class Sidebar extends Component {
     },
     // After query is updated, filter showingMarkers
     () => {
-      const newMarkers = this.props.defaultMarkers.filter((marker) =>
-        marker.name.toLowerCase().includes(this.state.query)
-      );
-      this.props.updateShowingMarkers(newMarkers);
+      if (this.state.query === '') {
+        this.props.updateShowingMarkers(this.props.defaultMarkers);
+      } else {
+        const newMarkers = this.props.defaultMarkers.filter((marker) =>
+          marker.name.toLowerCase().includes(this.state.query.toLowerCase())
+        );
+        this.props.updateShowingMarkers(newMarkers);
+      }
     });
 
     // Hide InfoWindow
