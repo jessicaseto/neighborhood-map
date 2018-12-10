@@ -57,16 +57,6 @@ export class App extends Component {
   state = {
     screenSize: 'mobile',
     sidebarVisible: 'hide',
-    mapStylesMobile: {
-      width: '100%',
-      position: 'absolute',
-      left: '0'
-    },
-    mapStylesDesktop: {
-      width: '75%',
-      position: 'absolute',
-      left: '25%'
-    },
     activeMarker: {},
     showingMarkers: this.markers,
     showingInfoWindow: false,
