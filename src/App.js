@@ -68,6 +68,11 @@ export class App extends Component {
     }));
   };
 
+  /* Function: activateMarker
+   * Parameters: marker (object)
+   * Description: Sets state's activeMarker to marker passed in, opens the
+   *   corresponding infowindow, and triggers the marker animation.
+   */
   activateMarker = (marker) => {
     this.setState({
       activeMarker: marker,
@@ -83,6 +88,11 @@ export class App extends Component {
     }, 500);
   };
 
+  /* Function: hideInfoWindow
+   * Parameters: none
+   * Description: Clears state's activeMarker, closes the open infowindow,
+   *   and sets the marker animation to null.
+   */
   hideInfoWindow = () => {
     if (this.state.showingInfoWindow) {
       this.setState({
@@ -93,24 +103,38 @@ export class App extends Component {
     }
   };
 
+  /* Function: toggleNav
+   * Parameters: none
+   * Description: Toggles sidebar visibility.
+   */
   toggleNav = () => {
     this.setState({
       sidebarVisible: (this.state.sidebarVisible === 'show') ? 'hide' : 'show'
     });
   };
 
+  /* Function: closeNav
+   * Parameters: none
+   * Description: Hides sidebar from view.
+   */
   closeNav = () => {
     this.setState({
       sidebarVisible: 'hide'
     });
   };
 
+  /* Function: updateShowingMarkers
+   * Parameters: markers (array of objects)
+   * Description: Sets the state's showingMarkers property to the array
+   *   of markers passed in.
+   */
   updateShowingMarkers = (markers) => {
     this.setState({
       showingMarkers: markers
     });
   };
 
+  // Render top level app
   render() {
     return (
       <div className="container">
