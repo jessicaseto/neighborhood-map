@@ -7,11 +7,23 @@ class Sidebar extends Component {
     query: ''
   };
 
+  /* Function: handleHikeClick
+   * Parameters: marker (object)
+   * Description: When a hike on the sidebar is clicked, activate that hike's
+   *   marker on the map.
+   */
   handleHikeClick = (marker) => {
     // Activate marker
     this.props.activateMarker(marker);
   };
 
+  /* Function: handleInputChange
+   * Parameters: event object
+   * Description: When the controlled input component's field is updated,
+   *   update the state's query property with the value in the input field.
+   *   Once the query is updated, filter the list of currently showing markers
+   *   to only contain the markers that match the query.
+   */
   handleInputChange = (event) => {
     // Update query in state
     this.setState({
@@ -33,6 +45,7 @@ class Sidebar extends Component {
     this.props.hideInfoWindow();
   };
 
+  // Render the Sidebar Component
   render() {
     return (
       <div
