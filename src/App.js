@@ -63,12 +63,6 @@ export class App extends Component {
     animateMarker: false
   };
 
-  // Styles
-  containerStyles = {
-    width: '100%',
-    height: '100%'
-  };
-
   addMarker = (marker) => {
     this.setState((prevState) => ({
       showingMarkers: [...prevState.showingMarkers, marker]
@@ -120,7 +114,7 @@ export class App extends Component {
 
   render() {
     return (
-      <div style={this.containerStyles}>
+      <div className="container">
         <nav className="nav">
           <button
             className={"hamburger " + this.state.sidebarVisible}
