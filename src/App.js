@@ -55,7 +55,6 @@ export class App extends Component {
 
   // State
   state = {
-    screenSize: 'mobile',
     sidebarVisible: 'hide',
     activeMarker: {},
     showingMarkers: this.markers,
