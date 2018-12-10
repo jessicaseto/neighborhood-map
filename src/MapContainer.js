@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React, { PureComponent } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 
 const Map = withScriptjs(withGoogleMap((props) =>
@@ -34,7 +34,7 @@ const Map = withScriptjs(withGoogleMap((props) =>
   </GoogleMap>
 ));
 
-class MapContainer extends Component {
+class MapContainer extends PureComponent {
   handleMapClick = (props) => {
     // Close nav upon map click
     this.props.closeNav();
