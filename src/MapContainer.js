@@ -1,6 +1,7 @@
 import React, { PureComponent } from 'react';
 import { withScriptjs, withGoogleMap, GoogleMap, Marker, InfoWindow } from 'react-google-maps';
 
+// Set up Map HOC with Google Map
 const Map = withScriptjs(withGoogleMap((props) =>
   <GoogleMap
     defaultCenter={{lat: 47.615022, lng: -122.148878}}
@@ -35,6 +36,12 @@ const Map = withScriptjs(withGoogleMap((props) =>
 ));
 
 class MapContainer extends PureComponent {
+
+  /* Function: handleMapClick
+   * Parameters: props
+   * Description: When map is clicked, close the sidebar on small screens
+   *   and hide the infowindow if it is showing.
+   */
   handleMapClick = (props) => {
     // Close nav upon map click
     this.props.closeNav();
@@ -43,6 +50,11 @@ class MapContainer extends PureComponent {
     this.props.hideInfoWindow();
   };
 
+  /* Function: handleMarkerClick
+   * Parameters: marker (object)
+   * Description: When a marker on the map is clicked, activate that marker
+   *   and hide the sidebar on small screens.
+   */
   handleMarkerClick = (marker) => {
     // Pass active marker to App.js
     this.props.activateMarker(marker);
@@ -58,16 +70,15 @@ class MapContainer extends PureComponent {
     };
   };
 
+  /* Function: handleInfoWindowClose
+   * Parameters: none
+   * Description: Close infowindow when close button is pressed on infowindow.
+   */
   handleInfoWindowClose = () => {
     this.props.closeInfoWindow();
   };
 
-  onInfoWindowMounted = (element) => {
-    if (element) {
-      console.log(element.infowindow);
-    };
-  };
-
+  // Render the MapContainer component
   render() {
     return (
       <Map
