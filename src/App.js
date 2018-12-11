@@ -71,12 +71,6 @@ export class App extends Component {
     animateMarker: false
   };
 
-  addMarker = (marker) => {
-    this.setState((prevState) => ({
-      showingMarkers: [...prevState.showingMarkers, marker]
-    }));
-  };
-
   /* Function: activateMarker
    * Parameters: marker (object)
    * Description: Sets state's activeMarker to marker passed in, opens the
