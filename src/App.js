@@ -71,13 +71,16 @@ export class App extends Component {
   /* Function: activateMarker
    * Parameters: marker (object)
    * Description: Sets state's activeMarker to marker passed in, opens the
-   *   corresponding infowindow, and triggers the marker animation.
+   *   corresponding infowindow, and triggers the marker animation. In the
+   *   callback of setState, the getFoursquareData function is called.
    */
   activateMarker = (marker) => {
     this.setState({
       activeMarker: marker,
       showingInfoWindow: true,
       animateMarker: true
+    }, () => {
+      this.getFoursquareData(marker);
     });
 
     // Limit marker animation to 500 ms
@@ -86,6 +89,24 @@ export class App extends Component {
         animateMarker: false
       });
     }, 500);
+  };
+
+  /* Function: getFoursquareData
+   * Parameters: marker (object)
+   * Description: Calls the Foursquare Places API is used to grab venue
+   *   details to add to the active InfoWindow.
+   */
+  getFoursquareData = (marker) => {
+    fetch('https://api.foursquare.com/v2/venues/explore?client_id=RW4MS34A5EDVBFLOPDLMOK3CWH3K15VSB5OJ2SGEDG1BRAD5&client_secret=QZHW4OWWFMP5BWDX2UTQQTJ5LQXVKC3DLLK5CXZWSUV2RJXQ&v=20180323&limit=1&ll=47.4913444,-121.8002557&query=rattlesnake+ridge')
+    .then((response) => response.json())
+    .then((response) => {
+      // Handle response
+      console.log(response);
+    })
+    .catch(function(error) {
+        // Code for handling errors
+        console.log('Sorry! There was a problem grabbing data for this location', error);
+    });
   };
 
   /* Function: hideInfoWindow
