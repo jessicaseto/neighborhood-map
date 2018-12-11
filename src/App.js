@@ -91,6 +91,18 @@ export class App extends Component {
     }, 500);
   };
 
+  /* Function: getProperty
+   * Parameters: object, pathArray (array)
+   * Description: Takes an object and the path to an object's property and
+   *   returns that property if it exists. This function is a support function
+   *   for getFoursquareData.
+   */
+   getProperty = (object, pathArray) => {
+     return pathArray.reduce((obj, key) =>
+       (obj && (obj[key] !== 'undefined')) ? obj[key] : null
+     , object);
+   }
+
   /* Function: getFoursquareData
    * Parameters: marker (object)
    * Description: Calls the Foursquare Places API is used to grab venue
@@ -98,14 +110,47 @@ export class App extends Component {
    */
   getFoursquareData = (marker) => {
     // Piece together URL for fetch API
-    const url = `https://api.foursquare.com/v2/venues/explore?client_id=RW4MS34A5EDVBFLOPDLMOK3CWH3K15VSB5OJ2SGEDG1BRAD5&client_secret=QZHW4OWWFMP5BWDX2UTQQTJ5LQXVKC3DLLK5CXZWSUV2RJXQ&v=20180323&limit=1&ll=${marker.position.lat},${marker.position.lng}&query=${marker.name}`;
-    
-    // API call
-    fetch(url)
+    const venueSearchUrl = `https://api.foursquare.com/v2/venues/explore?client_id=RW4MS34A5EDVBFLOPDLMOK3CWH3K15VSB5OJ2SGEDG1BRAD5&client_secret=QZHW4OWWFMP5BWDX2UTQQTJ5LQXVKC3DLLK5CXZWSUV2RJXQ&v=20180323&limit=1&ll=${marker.position.lat},${marker.position.lng}&query=${marker.name}`;
+
+    // Foursquare venue search API call
+    fetch(venueSearchUrl)
     .then((response) => response.json())
     .then((response) => {
-      // Handle response
-      console.log(response);
+      // Check meta code for successful fetch
+      if (response.meta.code === 200 ) {
+        // Return venue id
+        return this.getProperty(response, ['response', 'groups', 0, 'items', 0, 'venue', 'id']);
+      } else {
+        console.log('Sorry, there was an error with the venue search request.');
+      }
+    })
+    .then((id) => {
+      // save venue details url
+      const venueDetailsUrl = `https://api.foursquare.com/v2/venues/${id}?client_id=RW4MS34A5EDVBFLOPDLMOK3CWH3K15VSB5OJ2SGEDG1BRAD5&client_secret=QZHW4OWWFMP5BWDX2UTQQTJ5LQXVKC3DLLK5CXZWSUV2RJXQ&v=20180323&limit=1`
+
+      // Foursquare venue details API call
+      fetch(venueDetailsUrl)
+      .then((response) => response.json())
+      .then((response) => {
+        // Check meta code for successful fetch
+        if (response.meta.code === 200) {
+          // Get first venue photo
+          const photo = this.getProperty(response, ['response', 'venue', 'photos', 'groups', 1, 'items', 0]);
+
+          // Build photo URL if photo exists for venue
+          if (photo !== null) {
+            const photoSize = '200x150';
+            const photoPrefix = photo.prefix;
+            const photoSuffix = photo.suffix;
+            const photoUrl = photoPrefix + photoSize + photoSuffix;
+            console.log(photoUrl);
+          } else {
+            console.log(`Sorry, there are no photos available for ${marker.name}.`);
+          }
+        } else {
+          console.log('Sorry, there was an error with the venue details request.');
+        }
+      })
     })
     .catch(function(error) {
         // Code for handling errors
