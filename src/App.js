@@ -158,6 +158,20 @@ export class App extends Component {
     });
   };
 
+  /* Function: buildInfoWindow
+   * Parameters: marker (object)
+   * Description: Builds a DOM element for the active marker's infowindow.
+   */
+   buildInfoWindow = (marker) => {
+     const altText = `Photo of ${marker.title}.`;
+     return (
+       <div className="infowindow">
+         <h2>{marker.title}</h2>
+         <img src={marker.photo} alt={altText}/>
+       </div>
+     );
+   }
+
   /* Function: hideInfoWindow
    * Parameters: none
    * Description: Clears state's activeMarker, closes the open infowindow,
