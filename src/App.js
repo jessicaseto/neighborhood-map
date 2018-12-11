@@ -97,7 +97,11 @@ export class App extends Component {
    *   details to add to the active InfoWindow.
    */
   getFoursquareData = (marker) => {
-    fetch('https://api.foursquare.com/v2/venues/explore?client_id=RW4MS34A5EDVBFLOPDLMOK3CWH3K15VSB5OJ2SGEDG1BRAD5&client_secret=QZHW4OWWFMP5BWDX2UTQQTJ5LQXVKC3DLLK5CXZWSUV2RJXQ&v=20180323&limit=1&ll=47.4913444,-121.8002557&query=rattlesnake+ridge')
+    // Piece together URL for fetch API
+    const url = `https://api.foursquare.com/v2/venues/explore?client_id=RW4MS34A5EDVBFLOPDLMOK3CWH3K15VSB5OJ2SGEDG1BRAD5&client_secret=QZHW4OWWFMP5BWDX2UTQQTJ5LQXVKC3DLLK5CXZWSUV2RJXQ&v=20180323&limit=1&ll=${marker.position.lat},${marker.position.lng}&query=${marker.name}`;
+    
+    // API call
+    fetch(url)
     .then((response) => response.json())
     .then((response) => {
       // Handle response
@@ -105,7 +109,7 @@ export class App extends Component {
     })
     .catch(function(error) {
         // Code for handling errors
-        console.log('Sorry! There was a problem grabbing data for this location', error);
+        console.log('Sorry! There was a problem grabbing data for this location.', error);
     });
   };
 
