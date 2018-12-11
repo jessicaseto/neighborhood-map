@@ -160,7 +160,7 @@ export class App extends Component {
 
   /* Function: buildInfoWindow
    * Parameters: marker (object)
-   * Description: Builds a DOM element for the active marker's infowindow.
+   * Description: Builds a DOM node for the active marker's infowindow.
    */
    buildInfoWindow = (marker) => {
      const altText = `Photo of ${marker.title}.`;
