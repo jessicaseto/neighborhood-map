@@ -101,6 +101,11 @@
   display: block;
 }
 
+.infowindow .img-attribution {
+  font-size: 0.85em;
+  font-style: italic;
+}
+
 .sidebar {
   position: fixed;
   left: -275px;

@@ -78,7 +78,8 @@ class MapContainer extends PureComponent {
      return (
        <div className="infowindow">
          <h2 className="infowindow-h2">{marker.title}</h2>
-         <img className="infowindow-img" src={marker.photo} alt={marker.photoAttr}/>
+         <img className="infowindow-img" src={marker.photo} alt={marker.photoAlt}/>
+         <p className="img-attribution">{marker.photoAttr}</p>
          <span>{marker.message}</span>
          {(marker.url !== '') &&
            <a href={marker.url} rel="noopener noreferrer" target="_blank">here!</a>

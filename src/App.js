@@ -156,10 +156,12 @@ export class App extends Component {
             const photoSuffix = photo.suffix;
             const photoUrl = photoPrefix + photoSize + photoSuffix;
             marker.photo = photoUrl;
+            marker.photoAlt = `Image of ${marker.title}`;
             marker.photoAttr = 'Photo from Foursquare.';
           } else {
             // Use placeholder image
             marker.photo = 'https://via.placeholder.com/200x150.jpg?text=No+photos+:(';
+            marker.photoAlt = 'Placeholder image';
             marker.photoAttr = 'No photos from Foursquare.';
             console.log(`Sorry, there are no photos available for ${marker.name}.`);
           }
