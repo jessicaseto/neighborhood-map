@@ -65,6 +65,7 @@ class Sidebar extends Component {
             this.props.showingMarkers.map((marker) =>
               <li
                 key={marker.name}
+                tabIndex="0"
                 className={(marker.name === this.props.activeMarker.name) ?
                   "highlight" : ""
                 }
