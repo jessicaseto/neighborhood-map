@@ -29,7 +29,7 @@ const Map = withScriptjs(withGoogleMap((props) =>
         options={{pixelOffset: new window.google.maps.Size(0,-40)}}
         onCloseClick={props.hideInfoWindow}
       >
-        <h2 className="info-window-h2">{props.activeMarker.title}</h2>
+        {props.buildInfoWindow(props.activeMarker)}
       </InfoWindow>
     )}
   </GoogleMap>
@@ -70,6 +70,22 @@ class MapContainer extends PureComponent {
     };
   };
 
+  /* Function: buildInfoWindow
+   * Parameters: marker (object)
+   * Description: Builds a DOM node for the active marker's infowindow.
+   */
+   buildInfoWindow = (marker) => {
+     return (
+       <div className="infowindow">
+         <h2 className="infowindow-h2">{marker.title}</h2>
+         <span>{marker.message}</span>
+         {(marker.url !== '') &&
+           <a href={marker.url} rel="noopener noreferrer" target="_blank">here!</a>
+         }
+       </div>
+     );
+   }
+
   /* Function: handleInfoWindowClose
    * Parameters: none
    * Description: Close infowindow when close button is pressed on infowindow.
@@ -94,6 +110,7 @@ class MapContainer extends PureComponent {
         }
         onMapClick={this.handleMapClick}
         onMarkerClick={this.handleMarkerClick}
+        buildInfoWindow={this.buildInfoWindow}
         {...this.props}
       >
       </Map>

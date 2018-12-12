@@ -9,56 +9,47 @@ export class App extends Component {
     {
       name: 'Rattlesnake Ridge',
       position: {lat: 47.4913444, lng: -121.8002557},
-      title: 'Rattlesnake Ridge',
-      photo: ''
+      title: 'Rattlesnake Ridge'
     },
     {
       name: 'Lake Twenty-Two Trailhead',
       position: {lat: 48.0768597, lng: -121.7480719},
-      title: 'Lake Twenty-Two',
-      photo: ''
+      title: 'Lake Twenty-Two'
     },
     {
       name: 'Red Top Lookout',
       position: {lat: 47.307951, lng: -120.8206112},
-      title: 'Red Top Lookout',
-      photo: ''
+      title: 'Red Top Lookout'
     },
     {
       name: 'Barclay Lake Trailhead',
       position: {lat: 47.7924958, lng: -121.4615111},
-      title: 'Barclay Lake',
-      photo: ''
+      title: 'Barclay Lake'
     },
     {
       name: 'Tonga Ridge Trailhead',
       position: {lat: 47.6780863, lng: -121.2656751},
-      title: 'Tonga Ridge',
-      photo: ''
+      title: 'Tonga Ridge'
     },
     {
       name: 'Cedar Butte Trail',
       position:{lat: 47.4315858, lng: -121.7480878},
-      title: 'Cedar Butte',
-      photo: ''
+      title: 'Cedar Butte'
     },
     {
       name: 'Cougar Mountain Regional Wildland Park',
       position: {lat: 47.528257, lng: -122.1018782},
-      title: 'Cougar Mountain',
-      photo: ''
+      title: 'Cougar Mountain'
     },
     {
       name: 'Washington Park Arboretum UW Botanic Gardens',
       position: {lat: 47.6397989, lng: -122.2966645},
-      title: 'Washington Park Arboretum',
-      photo: ''
+      title: 'Washington Park Arboretum'
     },
     {
       name: 'Heather Lake Trail',
       position: {lat: 48.0731133, lng: -121.7870798},
-      title: 'Heather Lake',
-      photo: ''
+      title: 'Heather Lake'
     }
   ];
 
@@ -71,27 +62,43 @@ export class App extends Component {
     animateMarker: false
   };
 
-  /* Function: activateMarker
+  /* Function: setMarkerState
    * Parameters: marker (object)
    * Description: Sets state's activeMarker to marker passed in, opens the
-   *   corresponding infowindow, and triggers the marker animation. In the
-   *   callback of setState, the getFoursquareData function is called.
+   *   corresponding infowindow, and triggers the marker animation, limited
+   *   to 500 ms by setTimeout.
+   */
+   setMarkerState = (marker) => {
+     // Set marker state
+     this.setState({
+       activeMarker: marker,
+       showingInfoWindow: true,
+       animateMarker: true
+     }, () => {
+       // Limit marker animation to 500 ms
+       setTimeout(() => {
+         this.setState({
+           animateMarker: false
+         });
+       }, 500);
+     });
+   };
+
+  /* Function: activateMarker
+   * Parameters: marker (object)
+   * Description: Grabs Foursquare data on marker venue and sets marker state.
    */
   activateMarker = (marker) => {
-    this.setState({
-      activeMarker: marker,
-      showingInfoWindow: true,
-      animateMarker: true
-    }, () => {
-      this.getFoursquareData(marker);
+    this.getFoursquareData(marker)
+    .then(() => {
+      marker.message = 'See details from Foursquare ';
+      this.setMarkerState(marker);
+    })
+    .catch((error) => {
+      console.log('Error fetching Foursquare data');
+      marker.message = 'Unable to fetch data from Foursquare :(.';
+      this.setMarkerState(marker);
     });
-
-    // Limit marker animation to 500 ms
-    setTimeout(() => {
-      this.setState({
-        animateMarker: false
-      });
-    }, 500);
   };
 
   /* Function: getProperty
@@ -113,10 +120,10 @@ export class App extends Component {
    */
   getFoursquareData = (marker) => {
     // Piece together URL for fetch API
-    const venueSearchUrl = `https://api.foursquare.com/v2/venues/explore?client_id=RW4MS34A5EDVBFLOPDLMOK3CWH3K15VSB5OJ2SGEDG1BRAD5&client_secret=QZHW4OWWFMP5BWDX2UTQQTJ5LQXVKC3DLLK5CXZWSUV2RJXQ&v=20180323&limit=1&ll=${marker.position.lat},${marker.position.lng}&query=${marker.name}`;
+    const venueSearchUrl = `https://api.foursquare.com/v2/venues/explore?client_id=FPSF0YFWC50QTDZAW5GL221N11BN4N53OWK0BASKNC3LCQIE&client_secret=L0NTMLFUSR0MLNQB1VVEPEWWIX2D4XQVTOUUPSRRT2V4KDHC&v=20180323&limit=1&ll=${marker.position.lat},${marker.position.lng}&query=${marker.name}`;
 
     // Foursquare venue search API call
-    fetch(venueSearchUrl)
+    return fetch(venueSearchUrl)
     .then((response) => response.json())
     .then((response) => {
       // Check meta code for successful fetch
@@ -129,7 +136,7 @@ export class App extends Component {
     })
     .then((id) => {
       // save venue details url
-      const venueDetailsUrl = `https://api.foursquare.com/v2/venues/${id}?client_id=RW4MS34A5EDVBFLOPDLMOK3CWH3K15VSB5OJ2SGEDG1BRAD5&client_secret=QZHW4OWWFMP5BWDX2UTQQTJ5LQXVKC3DLLK5CXZWSUV2RJXQ&v=20180323&limit=1`
+      const venueDetailsUrl = `https://api.foursquare.com/v2/venues/${id}?client_id=FPSF0YFWC50QTDZAW5GL221N11BN4N53OWK0BASKNC3LCQIE&client_secret=L0NTMLFUSR0MLNQB1VVEPEWWIX2D4XQVTOUUPSRRT2V4KDHC&v=20180323`
 
       // Foursquare venue details API call
       fetch(venueDetailsUrl)
@@ -138,18 +145,24 @@ export class App extends Component {
         // Check meta code for successful fetch
         if (response.meta.code === 200) {
           // Get first venue photo
-          const photo = this.getProperty(response, ['response', 'venue', 'photos', 'groups', 1, 'items', 0]);
+          //let photo = this.getProperty(response, ['response', 'venue', 'photos', 'groups', 1, 'items', 0]);
+          let canonicalUrl = this.getProperty(response, ['response', 'venue', 'canonicalUrl']);
+          console.log(canonicalUrl);
+          marker.url = canonicalUrl;
 
           // Build photo URL if photo exists for venue
-          if (photo !== null) {
-            const photoSize = '200x150';
-            const photoPrefix = photo.prefix;
-            const photoSuffix = photo.suffix;
-            const photoUrl = photoPrefix + photoSize + photoSuffix;
-            console.log(photoUrl);
-          } else {
-            console.log(`Sorry, there are no photos available for ${marker.name}.`);
-          }
+          // if (photo !== null) {
+          //   const photoSize = '200x150';
+          //   const photoPrefix = photo.prefix;
+          //   const photoSuffix = photo.suffix;
+          //   const photoUrl = photoPrefix + photoSize + photoSuffix;
+          //   marker.photo = photoUrl;
+          //   marker.photoAttr = 'Photo from Foursquare.';
+          // } else {
+          //   marker.photo = 'https://via.placeholder.com/200x150.jpg?text=No+photos+:(';
+          //   marker.photoAttr = 'No photos from Foursquare.';
+          //   console.log(`Sorry, there are no photos available for ${marker.name}.`);
+          // }
         } else {
           console.log('Sorry, there was an error with the venue details request.');
         }
@@ -158,22 +171,9 @@ export class App extends Component {
     .catch(function(error) {
         // Code for handling errors
         console.log('Sorry! There was a problem grabbing data for this location.', error);
+        // marker.photoAttr = 'Error: There was a problem grabbing data from Foursquare.';
     });
   };
-
-  /* Function: buildInfoWindow
-   * Parameters: marker (object)
-   * Description: Builds a DOM node for the active marker's infowindow.
-   */
-   buildInfoWindow = (marker) => {
-     const altText = `Photo of ${marker.title}.`;
-     return (
-       <div className="infowindow">
-         <h2>{marker.title}</h2>
-         <img src={marker.photo} alt={altText}/>
-       </div>
-     );
-   }
 
   /* Function: hideInfoWindow
    * Parameters: none
