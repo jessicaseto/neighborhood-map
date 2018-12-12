@@ -145,24 +145,24 @@ export class App extends Component {
         // Check meta code for successful fetch
         if (response.meta.code === 200) {
           // Get first venue photo
-          //let photo = this.getProperty(response, ['response', 'venue', 'photos', 'groups', 1, 'items', 0]);
           let canonicalUrl = this.getProperty(response, ['response', 'venue', 'canonicalUrl']);
-          console.log(canonicalUrl);
           marker.url = canonicalUrl;
 
           // Build photo URL if photo exists for venue
-          // if (photo !== null) {
-          //   const photoSize = '200x150';
-          //   const photoPrefix = photo.prefix;
-          //   const photoSuffix = photo.suffix;
-          //   const photoUrl = photoPrefix + photoSize + photoSuffix;
-          //   marker.photo = photoUrl;
-          //   marker.photoAttr = 'Photo from Foursquare.';
-          // } else {
-          //   marker.photo = 'https://via.placeholder.com/200x150.jpg?text=No+photos+:(';
-          //   marker.photoAttr = 'No photos from Foursquare.';
-          //   console.log(`Sorry, there are no photos available for ${marker.name}.`);
-          // }
+          let photo = this.getProperty(response, ['response', 'venue', 'photos', 'groups', 1, 'items', 0]);
+          if (photo !== null) {
+            const photoSize = '180x130';
+            const photoPrefix = photo.prefix;
+            const photoSuffix = photo.suffix;
+            const photoUrl = photoPrefix + photoSize + photoSuffix;
+            marker.photo = photoUrl;
+            marker.photoAttr = 'Photo from Foursquare.';
+          } else {
+            // Use placeholder image
+            marker.photo = 'https://via.placeholder.com/200x150.jpg?text=No+photos+:(';
+            marker.photoAttr = 'No photos from Foursquare.';
+            console.log(`Sorry, there are no photos available for ${marker.name}.`);
+          }
         } else {
           console.log('Sorry, there was an error with the venue details request.');
         }

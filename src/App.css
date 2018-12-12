@@ -93,8 +93,12 @@
   height: 100%;
 }
 
-.infowindow-h2 {
+.infowindow .infowindow-h2 {
   font-size: 1em;
+}
+
+.infowindow .infowindow-img {
+  display: block;
 }
 
 .sidebar {
