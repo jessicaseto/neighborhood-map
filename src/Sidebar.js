@@ -50,6 +50,7 @@ class Sidebar extends Component {
     return (
       <div
         className={"sidebar " + this.props.sidebarVisible}
+        role="navigation"
       >
         <h2>List of Hikes</h2>
         <DebounceInput

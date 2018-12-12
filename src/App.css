@@ -40,13 +40,13 @@
   height: 100%;
 }
 
-.nav {
+.banner {
   height: 50px;
   display: flex;
   align-items: center;
 }
 
-.nav .hamburger {
+.banner .hamburger {
   background: none;
   border: 0;
   height: 50px;
@@ -56,27 +56,27 @@
   cursor: pointer;
 }
 
-.nav .hamburger:hover {
+.banner .hamburger:hover {
   background: #2e2e2e;
   color: #fff;
 }
 
-.nav .hamburger.show {
+.banner .hamburger.show {
   background: #2e2e2e;
   color: #fff;
 }
 
-.nav .title {
+.banner .title {
   display: inline-block;
 }
 
-.nav .title h1 {
+.banner .title h1 {
   display: inline-block;
   margin: 0 10px;
   font-size: 0.8em;
 }
 
-.nav .title .fa-dog {
+.banner .title .fa-dog {
   display: inline-block;
   font-size: 16px;
 }
@@ -173,33 +173,33 @@
 
 /* Responsiveness */
 @media only screen and (min-width: 350px) {
-  .nav .title h1 {
+  .banner .title h1 {
     font-size: 0.9em;
   }
 
-  .nav .title .fa-dog {
+  .banner .title .fa-dog {
     font-size: 18px;
   }
 }
 
 @media only screen and (min-width: 500px) {
-  .nav .title h1 {
+  .banner .title h1 {
     font-size: 1.25em;
   }
 }
 
 @media only screen and (min-width: 600px) {
-  .nav .hamburger {
+  .banner .hamburger {
     position: fixed;
     left: -75px;
   }
 
-  .nav .title h1 {
+  .banner .title h1 {
     margin: 0 20px;
     font-size: 1.5em;
   }
 
-  .nav .title .fa-dog {
+  .banner .title .fa-dog {
     font-size: 25px;
   }
 

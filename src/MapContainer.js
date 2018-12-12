@@ -108,7 +108,7 @@ class MapContainer extends PureComponent {
           <div className="container-element"/>
         }
         mapElement = {
-          <div className="map-element"/>
+          <div className="map-element" role="application"/>
         }
         onMapClick={this.handleMapClick}
         onMarkerClick={this.handleMarkerClick}

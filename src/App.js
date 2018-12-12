@@ -227,16 +227,18 @@ export class App extends Component {
   render() {
     return (
       <div className="container">
-        <nav className="nav">
+        <div className="banner" role="banner">
           <button
             className={"hamburger " + this.state.sidebarVisible}
+            aria-label="hamburger-menu-toggle"
+            tabIndex="0"
             onClick={this.toggleNav}
           >&#9776;</button>
           <div className="title">
             <h1>Dog Friendly Hikes Near Seattle</h1>
             <i className="fas fa-dog"></i>
           </div>
-        </nav>
+        </div>
         <Sidebar
           defaultMarkers={this.markers}
           showingMarkers={this.state.showingMarkers}
