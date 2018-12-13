@@ -9,47 +9,56 @@ export class App extends Component {
     {
       name: 'Rattlesnake Ridge',
       position: {lat: 47.4913444, lng: -121.8002557},
-      title: 'Rattlesnake Ridge'
+      title: 'Rattlesnake Ridge',
+      photo: '/images/placeholder.jpg'
     },
     {
       name: 'Lake Twenty-Two Trailhead',
       position: {lat: 48.0768597, lng: -121.7480719},
-      title: 'Lake Twenty-Two'
+      title: 'Lake Twenty-Two',
+      photo: '/images/placeholder.jpg'
     },
     {
       name: 'Red Top Lookout',
       position: {lat: 47.307951, lng: -120.8206112},
-      title: 'Red Top Lookout'
+      title: 'Red Top Lookout',
+      photo: '/images/placeholder.jpg'
     },
     {
       name: 'Barclay Lake Trailhead',
       position: {lat: 47.7924958, lng: -121.4615111},
-      title: 'Barclay Lake'
+      title: 'Barclay Lake',
+      photo: '/images/placeholder.jpg'
     },
     {
       name: 'Tonga Ridge Trailhead',
       position: {lat: 47.6780863, lng: -121.2656751},
-      title: 'Tonga Ridge'
+      title: 'Tonga Ridge',
+      photo: '/images/placeholder.jpg'
     },
     {
       name: 'Cedar Butte Trail',
       position:{lat: 47.4315858, lng: -121.7480878},
-      title: 'Cedar Butte'
+      title: 'Cedar Butte',
+      photo: '/images/placeholder.jpg'
     },
     {
       name: 'Cougar Mountain Regional Wildland Park',
       position: {lat: 47.528257, lng: -122.1018782},
-      title: 'Cougar Mountain'
+      title: 'Cougar Mountain',
+      photo: '/images/placeholder.jpg'
     },
     {
       name: 'Washington Park Arboretum UW Botanic Gardens',
       position: {lat: 47.6397989, lng: -122.2966645},
-      title: 'Washington Park Arboretum'
+      title: 'Washington Park Arboretum',
+      photo: '/images/placeholder.jpg'
     },
     {
       name: 'Heather Lake Trail',
       position: {lat: 48.0731133, lng: -121.7870798},
-      title: 'Heather Lake'
+      title: 'Heather Lake',
+      photo: '/images/placeholder.jpg'
     }
   ];
 
@@ -157,12 +166,10 @@ export class App extends Component {
             const photoUrl = photoPrefix + photoSize + photoSuffix;
             marker.photo = photoUrl;
             marker.photoAlt = `Image of ${marker.title}`;
-            marker.photoAttr = 'Photo from Foursquare.';
           } else {
             // Use placeholder image
-            marker.photo = 'https://via.placeholder.com/200x150.jpg?text=No+photos+:(';
+            marker.photo = '/images/no_photos.jpg';
             marker.photoAlt = 'Placeholder image';
-            marker.photoAttr = 'No photos from Foursquare.';
             console.log(`Sorry, there are no photos available for ${marker.name}.`);
           }
         } else {
