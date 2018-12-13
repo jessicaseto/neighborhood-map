@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import DebounceInput from 'react-debounce-input';
+import PropTypes from 'prop-types';
 
 class Sidebar extends Component {
   // State
@@ -84,5 +85,11 @@ class Sidebar extends Component {
     );
   }
 }
+
+Sidebar.propTypes = {
+  sidebarVisible: PropTypes.string.isRequired,
+  showingMarkers: PropTypes.array.isRequired,
+  activeMarker: PropTypes.object.isRequired
+};
 
 export default Sidebar;
