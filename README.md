@@ -52,7 +52,7 @@ You may also filter through the nine locations by name by typing into the input 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
 
-The photo and link for each hike was fetched using the [Foursquare API] (https://developer.foursquare.com/).
+The photo and link for each hike was fetched using the [Foursquare API](https://developer.foursquare.com/).
 
 ## Available Scripts
 
