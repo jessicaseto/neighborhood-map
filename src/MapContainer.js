@@ -26,7 +26,9 @@ const Map = withScriptjs(withGoogleMap((props) =>
     {props.showingInfoWindow && (
       <InfoWindow
         position={props.activeMarker.position}
-        options={{pixelOffset: new window.google.maps.Size(0,-40)}}
+        options={{pixelOffset: new window.google.maps.Size(0,-40),
+                  maxWidth: '250'
+                }}
         onCloseClick={props.hideInfoWindow}
       >
         {props.buildInfoWindow(props.activeMarker)}

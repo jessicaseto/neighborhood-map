@@ -93,12 +93,18 @@
   height: 100%;
 }
 
+.infowindow {
+  width: 150px;
+}
+
 .infowindow .infowindow-h2 {
-  font-size: 1em;
+  font-size: 1.1em;
 }
 
 .infowindow .infowindow-img {
   display: block;
+  margin: 0;
+  width: 150px;
 }
 
 .infowindow .img-attribution {
@@ -108,6 +114,8 @@
 
 .infowindow .foursquare-attribution {
   display: block;
+  margin: 0;
+  width: 150px;
 }
 
 .sidebar {
