@@ -179,8 +179,8 @@ export class App extends Component {
     })
     .catch(function(error) {
         // Code for handling errors
+        alert('Oops! There was a problem grabbing data from Foursquare! Hike details will not be shown.')
         console.log('Sorry! There was a problem grabbing data for this location.', error);
-        // marker.photoAttr = 'Error: There was a problem grabbing data from Foursquare.';
     });
   };
 
