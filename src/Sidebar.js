@@ -14,7 +14,7 @@ class Sidebar extends Component {
    */
   handleHikeClick = (marker) => {
     // Check for Google Maps authentication failure
-    if (!window.gm_authFailure) {
+    if (!window.gmAuthFailure) {
       // Activate marker
       this.props.activateMarker(marker);
     }
