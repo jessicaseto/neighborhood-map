@@ -1,4 +1,58 @@
+# Neighborhood Map Project
+
+The Neighborhood Map Project is a Google Maps React App that is part of the Udacity Front End Nanodegree Program. The purpose of the project is to create a dynamic and responsive web application with the use of React and Google Maps API, as well as an additional third party API. In this case, Foursquare API is used.
+
+In this particular project, a list of nine dog friendly hikes near Seattle are shown on a Google Map.
+
+## Installation
+
+To access the application:
+* In a bash terminal, run `git clone https://github.com/jessicaseto/neighborhood-map.git`
+* install all project dependencies with `npm install`
+* to view the app in developer mode:
+    * start the development server with `npm start` to view the app in developer mode
+* to run the project in production mode with offline functionality:
+    * run `npm run build`
+    * run `serve -s build`
+    * open app in a browser at http://localhost:5000/
+
+## Usage
+
+Once the app is running on the local server, you should be able to see the app running. The app on a large screen is shown below.
+
+![Large Screen](/public/images/large-screen.png?raw=true "App On Large Screen")
+
+When the app is viewed on a smaller screen, a hamburger menu appears to toggle the navigation.
+
+![Small Screen](/public/images/small-screen.png?raw=true "App On Small Screen")
+
+Click on a marker to view additional details of a particular hike in a pop-up info window. A photo from Foursquare and a link to the Foursquare venue will appear. Alternatively, click on the hike on the navigation sidebar to display the same information. Click on the 'x' on the info window to close the pop-up.
+
+![Marker Clicked](/public/images/marker-clicked.png?raw=true "Marker Clicked")
+
+You may also filter through the nine locations by name by typing into the input box on the sidebar. Names of hikes matching the search query will appear on the sidebar along with their corresponding markers on the Google Map.
+
+![Filter Hikes](/public/images/filter-hikes.png?raw=true "Filter Hikes")
+
+## Source File Directory Guide
+```bash
+├── README.md - This file.
+└── src
+    ├── App.css # Styles for the app.
+    ├── App.js # This is the root of the app.
+    ├── App.test.js # Used for testing. Provided with Create React App. (Unused for now)
+    ├── index.css # Global styles.
+    ├── index.js # You should not need to modify this file. It is used for DOM rendering only.
+    ├── MapContainer.js # MapContainer component, used to render the Google Map with markers and an info window.
+    ├── serviceWorker.js # serviceWorker provided by create-react-app.
+    └── Sidebar.js # Sidebar component, used to render the navigation sidebar with the filter input box and list of hikes.
+```
+
+## Attribution
+
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+The photo and link for each hike was fetched using the [Foursquare API] (https://developer.foursquare.com/).
 
 ## Available Scripts
 
